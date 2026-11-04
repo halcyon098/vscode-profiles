@@ -29,6 +29,14 @@ function getUserDirectory() {
   return path.join(os.homedir(), ".config/Code/User");
 }
 
+function normalizeSettings(settings) {
+  const normalized = structuredClone(settings);
+  if (normalized["workbench.colorTheme"] === "Default Dark Modern") {
+    normalized["workbench.colorTheme"] = "Dark Modern";
+  }
+  return normalized;
+}
+
 const userDirectory = getUserDirectory();
 const codeCommand = process.env.VSCODE_COMMAND || "code";
 const storage = JSON.parse(
@@ -49,7 +57,11 @@ for (const profileId of profileIds) {
       "utf8",
     ),
   );
-  assert.deepEqual(actualSettings, expectedSettings, `${template.name}: settings differ`);
+  assert.deepEqual(
+    normalizeSettings(actualSettings),
+    normalizeSettings(expectedSettings),
+    `${template.name}: settings differ`,
+  );
 
   const expectedExtensions = new Set(
     JSON.parse(template.extensions).map((entry) => entry.identifier.id.toLowerCase()),

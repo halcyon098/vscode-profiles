@@ -4,6 +4,8 @@
   "type": "module",
   "scripts": {
     "build": "node scripts/build.mjs",
-    "check": "node scripts/check.mjs"
+    "check": "node scripts/check.mjs",
+    "install:local": "node scripts/install-local.mjs all",
+    "audit:local": "node scripts/audit-local.mjs"
   }
 }

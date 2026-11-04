@@ -18,7 +18,7 @@ Imports create profiles named `Base v2`, `Go v2`, `Python v2`, `PHP v2`, and `Ja
 
 Framework integrations are project concerns. For example, Vue projects should recommend `vue.volar` in the project's `.vscode/extensions.json` instead of adding Volar to the general JavaScript/TypeScript profile.
 
-AI assistants, model endpoints, MCP servers, UI state, absolute paths and credentials are intentionally excluded.
+AI assistants, model endpoints, MCP servers, UI state, absolute paths and credentials are intentionally excluded. VS Code's built-in Copilot and chat surfaces are disabled with `chat.disableAIFeatures`.
 
 ## Restore
 
@@ -29,7 +29,7 @@ The preferred path on a new machine is:
 3. Sync Settings, Extensions, Profiles, Keyboard Shortcuts, Snippets and Tasks.
 4. Keep UI State and AI-related resources out of sync.
 
-When Settings Sync is unavailable, download this repository and import the generated files from `dist/`, or run:
+When Settings Sync is unavailable, run the non-interactive installer:
 
 ```sh
 curl -fsSL https://raw.githubusercontent.com/halcyon098/vscode-profiles/main/bootstrap.sh | sh -s -- all
@@ -37,7 +37,11 @@ curl -fsSL https://raw.githubusercontent.com/halcyon098/vscode-profiles/main/boo
 
 Use `base`, `go`, `python`, `php` or `js` instead of `all` to import one profile.
 
-The bootstrap script only downloads and opens VS Code profile files. It does not install VS Code, language runtimes or command-line tools.
+Close VS Code before running the installer. The script backs up VS Code's local profile registry, registers any missing profiles, installs extensions through the official VS Code CLI, and writes the profile settings without opening the graphical Profile Import screen.
+
+The bootstrap script requires `code`, `curl`, and Node.js. It does not install VS Code, language runtimes or command-line tools. When Node.js is unavailable, use VS Code Settings Sync instead.
+
+Do not repeatedly open files from `dist/` after a profile has been installed. They are portable artifacts and build outputs, not the preferred local installation path.
 
 ## Development
 
@@ -46,6 +50,8 @@ Source settings and extension lists live under `src/`. Generated `.code-profile`
 ```sh
 npm run build
 npm run check
+node scripts/install-local.mjs all
+npm run audit:local
 ```
 
 The build uses only the Node.js standard library. Language settings override common settings, objects are merged recursively, and extension IDs are deduplicated.

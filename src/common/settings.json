@@ -10,6 +10,7 @@
   "editor.stickyScroll.enabled": true,
   "editor.linkedEditing": true,
   "editor.accessibilitySupport": "auto",
+  "chat.disableAIFeatures": true,
   "files.autoSave": "off",
   "files.trimTrailingWhitespace": true,
   "files.insertFinalNewline": true,

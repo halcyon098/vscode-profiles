@@ -5,11 +5,11 @@ import path from "node:path";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const profileIds = ["base", "go", "python", "php", "javascript-typescript"];
 const expectedNames = {
-  base: "Base v2",
-  go: "Go v2",
-  python: "Python v2",
-  php: "PHP v2",
-  "javascript-typescript": "JavaScript & TypeScript v2",
+  base: "Base",
+  go: "Go",
+  python: "Python",
+  php: "PHP",
+  "javascript-typescript": "JavaScript & TypeScript",
 };
 const forbiddenKeys = [
   "vue.",

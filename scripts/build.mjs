@@ -7,13 +7,13 @@ const sourceRoot = path.join(root, "src");
 const outputRoot = path.join(root, "dist");
 
 const profiles = [
-  { id: "base", name: "Base v2", icon: "vscode" },
-  { id: "go", name: "Go v2" },
-  { id: "python", name: "Python v2", icon: "snake" },
-  { id: "php", name: "PHP v2" },
+  { id: "base", name: "Base", icon: "vscode" },
+  { id: "go", name: "Go" },
+  { id: "python", name: "Python", icon: "snake" },
+  { id: "php", name: "PHP" },
   {
     id: "javascript-typescript",
-    name: "JavaScript & TypeScript v2",
+    name: "JavaScript & TypeScript",
   },
 ];
 

@@ -10,7 +10,7 @@ Imports create profiles named `Base v2`, `Go v2`, `Python v2`, `PHP v2`, and `Ja
 
 | Profile | Language support | Additional extensions |
 | --- | --- | --- |
-| Base | Git, Markdown, JSON, YAML, TOML, XML, SSH, containers | EditorConfig, YAML, TOML, XML, Remote SSH, Dev Containers, Containers |
+| Base | Git, Markdown, JSON, YAML, TOML, XML, SSH, containers | EditorConfig, YAML, TOML, XML, Remote SSH, Containers |
 | Go | Go, gopls, formatting, imports, tests, debugging | Go |
 | Python | Python, Pylance, Ruff formatting and linting | Python, Pylance, Ruff |
 | PHP | PHP completion, formatting and Xdebug | Intelephense, PHP Debug |
@@ -19,6 +19,8 @@ Imports create profiles named `Base v2`, `Go v2`, `Python v2`, `PHP v2`, and `Ja
 Framework integrations are project concerns. For example, Vue projects should recommend `vue.volar` in the project's `.vscode/extensions.json` instead of adding Volar to the general JavaScript/TypeScript profile.
 
 AI assistants, model endpoints, MCP servers, UI state, absolute paths and credentials are intentionally excluded. VS Code's built-in Copilot and chat surfaces are disabled with `chat.disableAIFeatures`.
+
+The repository never writes the default Profile's `settings.json`. Application-scoped extensions, including the Chinese language pack and Dev Containers, remain owned by the default VS Code installation and are not installed or removed by the language-profile installer.
 
 ## Restore
 

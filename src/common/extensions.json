@@ -1,10 +1,8 @@
 [
-  "ms-ceintl.vscode-language-pack-zh-hans",
   "EditorConfig.EditorConfig",
   "redhat.vscode-yaml",
   "tamasfe.even-better-toml",
   "redhat.vscode-xml",
   "ms-vscode-remote.remote-ssh",
-  "ms-vscode-remote.remote-containers",
   "ms-azuretools.vscode-containers"
 ]

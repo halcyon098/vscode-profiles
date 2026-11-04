@@ -26,6 +26,10 @@ const forbiddenExtensionPrefixes = [
   "hybridtalentcomputing.cline-chinese",
   "openai.",
 ];
+const applicationScopedExtensions = new Set([
+  "ms-ceintl.vscode-language-pack-zh-hans",
+  "ms-vscode-remote.remote-containers",
+]);
 
 function assert(condition, message) {
   if (!condition) {
@@ -58,6 +62,10 @@ for (const profileId of profileIds) {
   assert(
     !extensionIds.some((id) => forbiddenExtensionPrefixes.some((prefix) => id.toLowerCase().startsWith(prefix))),
     `${profileId}: AI extension found`,
+  );
+  assert(
+    !extensionIds.some((id) => applicationScopedExtensions.has(id.toLowerCase())),
+    `${profileId}: application-scoped extension must remain outside language profiles`,
   );
   assert(
     !Object.keys(settings).some((key) => forbiddenKeys.some((prefix) => key.startsWith(prefix))),

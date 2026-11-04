@@ -141,8 +141,15 @@ const selection = process.argv[2] ?? "all";
 const requestedProfiles = getRequestedProfiles(selection);
 const userDirectory = getUserDirectory();
 const codeCommand = process.env.VSCODE_COMMAND || "code";
+const defaultSettingsPath = path.join(userDirectory, "settings.json");
 
 assertVSCodeIsClosed();
+const defaultSettingsBefore = await readFile(defaultSettingsPath, "utf8").catch((error) => {
+  if (error?.code === "ENOENT") {
+    return null;
+  }
+  throw error;
+});
 
 for (const profileId of requestedProfiles) {
   const template = await loadTemplate(profileId);
@@ -169,4 +176,15 @@ for (const profileId of requestedProfiles) {
   console.log(`Installed ${template.name} (${extensions.length} extensions).`);
 }
 
+const defaultSettingsAfter = await readFile(defaultSettingsPath, "utf8").catch((error) => {
+  if (error?.code === "ENOENT") {
+    return null;
+  }
+  throw error;
+});
+if (defaultSettingsAfter !== defaultSettingsBefore) {
+  throw new Error("Default VS Code settings changed unexpectedly; restore the registry backup.");
+}
+
+console.log("Default VS Code settings were not modified.");
 console.log("Done. Start VS Code normally; do not re-import the .code-profile files.");

@@ -4,6 +4,13 @@ import path from "node:path";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const profileIds = ["base", "go", "python", "php", "javascript-typescript"];
+const expectedNames = {
+  base: "Base v2",
+  go: "Go v2",
+  python: "Python v2",
+  php: "PHP v2",
+  "javascript-typescript": "JavaScript & TypeScript v2",
+};
 const forbiddenKeys = [
   "vue.",
   "roo-cline.",
@@ -31,7 +38,7 @@ for (const profileId of profileIds) {
   const raw = await readFile(filePath, "utf8");
   const template = JSON.parse(raw);
 
-  assert(typeof template.name === "string", `${profileId}: missing name`);
+  assert(template.name === expectedNames[profileId], `${profileId}: unexpected profile name`);
   assert(!("globalState" in template), `${profileId}: globalState must not be exported`);
   assert(!("mcp" in template), `${profileId}: MCP must not be exported`);
   assert(!("keybindings" in template), `${profileId}: keybindings must not be exported`);

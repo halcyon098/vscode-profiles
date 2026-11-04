@@ -4,6 +4,8 @@ Minimal, framework-neutral VS Code profiles for general development, Go, Python,
 
 The repository is the auditable source and disaster-recovery path. VS Code Settings Sync remains the normal way to restore profiles on a new machine.
 
+Imports create profiles named `Base v2`, `Go v2`, `Python v2`, `PHP v2`, and `JavaScript & TypeScript v2`. The suffix prevents conflicts with older profiles during migration.
+
 ## Profiles
 
 | Profile | Language support | Additional extensions |
